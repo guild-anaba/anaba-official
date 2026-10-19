@@ -1,0 +1,521 @@
+/* ANABA-WEB-005: existing ANABA visual system を保った公開前の可読性調整 */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* 写真・生成り・木の質感を共通言語にしたブランドレイヤー。 */
+.site-header {
+  background: rgba(255, 253, 248, 0.94);
+  border-bottom-color: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 0.2rem 1rem rgba(47, 27, 18, 0.06);
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header {
+    background: rgba(247, 243, 234, 0.78);
+    -webkit-backdrop-filter: blur(16px) saturate(112%);
+    backdrop-filter: blur(16px) saturate(112%);
+  }
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(36rem, 78svh, 51rem);
+  padding: 0;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--deep);
+}
+
+.hero-image,
+.hero-shade,
+.hero-grid {
+  grid-area: 1 / 1;
+}
+
+.hero-image {
+  position: relative;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  animation: hero-breathe 16s ease-in-out 1s alternate both;
+}
+
+.hero-image figcaption {
+  right: clamp(1rem, 3vw, 2.5rem);
+  bottom: 1rem;
+  padding: 0;
+  color: rgba(255, 252, 244, 0.72);
+  background: transparent;
+}
+
+.hero-shade {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(31, 17, 10, 0.82) 0%, rgba(31, 17, 10, 0.5) 45%, rgba(31, 17, 10, 0.08) 78%),
+    linear-gradient(0deg, rgba(31, 17, 10, 0.46), transparent 46%);
+}
+
+.hero-grid {
+  display: flex;
+  align-items: center;
+  width: min(calc(100% - 2rem), var(--max));
+  padding-block: clamp(5.5rem, 13vh, 8.5rem) clamp(4rem, 9vh, 6rem);
+}
+
+.hero-copy {
+  width: min(39rem, 64%);
+  padding: clamp(1.2rem, 3vw, 2rem) 0;
+  text-shadow: 0 1px 2px rgba(30, 15, 8, 0.35);
+}
+
+.hero-copy .eyebrow {
+  color: #e7c983;
+}
+
+.hero h1 {
+  color: rgba(255, 252, 244, 0.99);
+  font-size: clamp(3.2rem, 7vw, 6.2rem);
+  letter-spacing: 0.045em;
+}
+
+.hero h1 span {
+  margin-bottom: 0.45rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+  font-size: 0.22em;
+  letter-spacing: 0.2em;
+}
+
+.tagline {
+  margin-block: 1.35rem 1rem;
+}
+
+.hero-lead {
+  max-width: 33rem;
+  margin-bottom: 1.1rem;
+}
+
+.hero-hours {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 1.35rem;
+  color: rgba(255, 252, 244, 0.92);
+}
+
+.hero-hours span {
+  color: #e7c983;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.hero-hours strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.08em;
+}
+
+.hero .button-gold {
+  min-height: 3.35rem;
+  padding-inline: 1.35rem;
+  border: 1px solid rgba(255, 246, 220, 0.42);
+  border-radius: 999px;
+  box-shadow: 0 0.6rem 1.5rem rgba(20, 10, 5, 0.24);
+  text-shadow: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.hero .button-gold:hover {
+  background: #c79a47;
+  box-shadow: 0 0.8rem 1.8rem rgba(20, 10, 5, 0.3);
+  transform: translateY(-2px);
+}
+
+.hero-copy > * {
+  animation: hero-copy-in 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-copy > :nth-child(2) { animation-delay: 80ms; }
+.hero-copy > :nth-child(3) { animation-delay: 150ms; }
+.hero-copy > :nth-child(4) { animation-delay: 210ms; }
+.hero-copy > :nth-child(5) { animation-delay: 270ms; }
+.hero-copy > :nth-child(6) { animation-delay: 340ms; }
+
+.section {
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+}
+
+.section-surface {
+  background: rgba(255, 253, 248, 0.72);
+  border-block-color: rgba(223, 212, 197, 0.72);
+}
+
+.intro-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 8vw, 6.5rem);
+}
+
+.intro-section .section-heading {
+  max-width: 52rem;
+}
+
+.feature-grid {
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  margin-top: 2.5rem;
+}
+
+.feature-card {
+  border-color: rgba(223, 212, 197, 0.72);
+  border-radius: 1rem;
+  box-shadow: 0 0.45rem 1.4rem rgba(47, 27, 18, 0.09);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
+}
+
+.feature-card img {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    box-shadow: 0 0.8rem 2rem rgba(47, 27, 18, 0.14);
+    transform: translateY(-0.3rem);
+  }
+
+  .feature-card:hover img {
+    transform: scale(1.025);
+  }
+}
+
+.price-content {
+  border-radius: 1rem;
+  box-shadow: 0 0.55rem 1.7rem rgba(47, 27, 18, 0.08);
+}
+
+.flow-list {
+  border-radius: 1rem;
+  box-shadow: 0 0.35rem 1.2rem rgba(47, 27, 18, 0.06);
+}
+
+.reservation {
+  position: relative;
+  background:
+    linear-gradient(110deg, rgba(74, 47, 32, 0.97), rgba(47, 27, 18, 0.95)),
+    url("../images/anaba-workbench-pattern.svg");
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), inset 0 -1px rgba(0, 0, 0, 0.12);
+}
+
+.map-wrap iframe {
+  border-radius: 1rem;
+  box-shadow: 0 0.45rem 1.4rem rgba(47, 27, 18, 0.1);
+}
+
+.reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0);
+}
+
+.reveal-ready.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes hero-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.035); }
+}
+
+@keyframes hero-copy-in {
+  from { opacity: 0; transform: translate3d(0, 0.75rem, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.site-nav {
+  gap: 1.2rem;
+}
+
+.site-nav a {
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+
+.intro-section {
+  padding-block: 3.9rem;
+}
+
+.price-layout {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.price-content {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  border-radius: 7px;
+  box-shadow: 0 0.35rem 1rem rgba(47, 27, 18, 0.05);
+}
+
+.price-content .price-panel {
+  border: 0;
+  border-radius: 0;
+}
+
+.membership-notice {
+  margin: 0;
+  padding: 1.15rem 1.25rem 1.25rem;
+  background: linear-gradient(135deg, var(--tan), #f7eddc);
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.membership-notice p + p {
+  margin-top: 0.65rem;
+}
+
+.membership-notice a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  font-weight: 700;
+  text-underline-offset: 0.18em;
+}
+
+.flow-list li {
+  min-height: 175px;
+}
+
+.reservation-inner {
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.reservation .button {
+  min-height: 3.35rem;
+  padding-inline: 1.4rem;
+}
+
+.site-footer nav a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+/* Sticky headerでアンカー先の見出しが隠れないようにする。 */
+[id] {
+  scroll-margin-top: 5.75rem;
+}
+
+/* PCナビが窮屈になるタブレット横幅では、既存のメニュー操作を利用する。 */
+@media (min-width: 761px) and (max-width: 920px) {
+  .menu-button {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 3px;
+    padding: 0.4rem;
+    color: var(--brown);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .menu-button span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  .menu-button b {
+    margin-left: 0.25rem;
+    font: 700 0.65rem inherit;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    right: 1rem;
+    left: 1rem;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-nav a {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    background: rgba(255, 253, 248, 0.96);
+  }
+
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .site-header {
+      background: rgba(247, 243, 234, 0.82);
+    }
+  }
+
+  .site-nav {
+    background: rgba(255, 253, 248, 0.98);
+    border-radius: 0.75rem;
+  }
+
+  .hero {
+    min-height: clamp(34rem, 82svh, 43rem);
+  }
+
+  .hero-grid {
+    align-items: end;
+    width: min(calc(100% - 1.5rem), var(--max));
+    padding-block: 5.5rem 3rem;
+  }
+
+  .hero-copy {
+    width: 100%;
+    padding: 1.1rem;
+    background: rgba(35, 20, 12, 0.38);
+    border: 1px solid rgba(255, 252, 244, 0.18);
+    border-radius: 1rem;
+  }
+
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .hero-copy {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(0deg, rgba(30, 16, 9, 0.88) 0%, rgba(30, 16, 9, 0.42) 60%, rgba(30, 16, 9, 0.12) 100%);
+  }
+
+  .hero-image img {
+    object-position: 55% center;
+  }
+
+  .hero-image figcaption {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 15vw, 4.4rem);
+  }
+
+  .tagline {
+    font-size: clamp(1.55rem, 7.2vw, 2rem);
+  }
+
+  .hero-lead {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .hero .button-gold {
+    width: 100%;
+  }
+
+  .site-nav a {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    font-size: 0.96rem;
+  }
+
+  .intro-section {
+    padding-block: 3.5rem;
+  }
+
+  .price-layout {
+    gap: 1.25rem;
+  }
+
+  .price-content {
+    width: 100%;
+  }
+
+  .price-row {
+    gap: 0.65rem;
+  }
+
+  .price-row strong {
+    white-space: nowrap;
+  }
+
+  .membership-notice {
+    padding: 1rem;
+  }
+
+  .membership-notice a {
+    min-height: 2.6rem;
+  }
+
+  .feature-card {
+    border-radius: 0.8rem;
+    box-shadow: 0 0.3rem 1rem rgba(47, 27, 18, 0.08);
+  }
+}
+
+@media (max-width: 480px) {
+  .flow-list {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-list li {
+    min-height: 132px;
+  }
+
+  .site-footer nav {
+    gap: 0.25rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-image img,
+  .hero-copy > *,
+  .feature-card,
+  .feature-card img,
+  .reveal-ready,
+  .reveal-ready.is-revealed {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
